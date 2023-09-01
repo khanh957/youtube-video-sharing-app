@@ -17,8 +17,7 @@ RSpec.describe User, type: :model do
       let(:email) { "example" }
 
       it "raises an error" do
-        expect { user }.to raise_error(ActiveRecord::RecordInvalid)
-        expect { user }.to raise_error("Validation failed: Email is invalid")
+        expect { user }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email is invalid")
       end
     end
 
@@ -26,8 +25,7 @@ RSpec.describe User, type: :model do
       before { FactoryBot.create(:user) }
 
       it "raises an error" do
-        expect { user }.to raise_error(ActiveRecord::RecordInvalid)
-        expect { user }.to raise_error("Validation failed: Email has already been taken")
+        expect { user }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email has already been taken")
       end
     end
 
@@ -35,8 +33,7 @@ RSpec.describe User, type: :model do
       let(:email) { "" }
 
       it "raises an error" do
-        expect { user }.to raise_error(ActiveRecord::RecordInvalid)
-        expect { user }.to raise_error("Validation failed: Email can't be blank")
+        expect { user }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email can't be blank")
       end
     end
 
@@ -44,8 +41,7 @@ RSpec.describe User, type: :model do
       let(:password) { "" }
 
       it "raises an error" do
-        expect { user }.to raise_error(ActiveRecord::RecordInvalid)
-        expect { user }.to raise_error("Validation failed: Password can't be blank")
+        expect { user }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Password can't be blank")
       end
     end
 
@@ -53,8 +49,7 @@ RSpec.describe User, type: :model do
       let(:password) { "123" }
 
       it "raises an error" do
-        expect { user }.to raise_error(ActiveRecord::RecordInvalid)
-        expect { user }.to raise_error("Validation failed: Password is too short (minimum is 6 characters)")
+        expect { user }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Password is too short (minimum is 6 characters)")
       end
     end
   end

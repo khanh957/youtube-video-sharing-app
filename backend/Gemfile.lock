@@ -97,6 +97,7 @@ GEM
     irb (1.8.0)
       rdoc (~> 6.5)
       reline (>= 0.3.6)
+    jwt (2.7.1)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -213,6 +214,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9.2)
   factory_bot_rails (~> 6.2)
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
