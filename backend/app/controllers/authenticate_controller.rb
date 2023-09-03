@@ -26,6 +26,6 @@ class AuthenticateController < ApplicationController
   end
 
   def get_token(user)
-    Auth.issue({user: user.id, email: user.email})
+    Auth.issue({user_id: user.id, email: user.email})
   end
 end
