@@ -1,0 +1,39 @@
+ul {
+  list-style-type: none;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.body {
+  margin-top: 20px;
+}
+
+.video-item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.video-iframe {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.video-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.video-info p {
+  text-align: left;
+}
+
+.video-title,
+.video-user p {
+  margin: 0;
+}
+
+.description-label, .description-content {
+  margin: 0;
+}
