@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import cookie from 'react-cookies'
 import './Header.css';
 
-function Header() {
+function Header({ onShareVideoClick }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const handleLogin = async () => {
     try {
@@ -19,9 +19,8 @@ function Header() {
 
       if (response.ok) {
         const data = await response.json();
-        setUser(data.user)
-        const token = data.token;
-        cookie.save("token", token);
+        setUserData(data)
+        cookie.save("token", data);
       } else {
         const errorData = await response.json();
         alert(errorData.error);
@@ -33,14 +32,12 @@ function Header() {
 
   const handleLogout = () => {
     cookie.remove("token");
-    setUser(null);
+    setUserData(null);
   };
 
   useEffect(() => {
-    
+    setUserData(cookie.load("token"))
   }, []);
-
-  const token = cookie.load("token");
 
   return (
     <div className="header">
@@ -50,9 +47,12 @@ function Header() {
       </div>
       <div className="right">
         {
-          (token && user) ?
+          (userData) ?
             <div>
-              Welcome {user.email}
+              Welcome {userData.user.email}
+              <button className="button" onClick={onShareVideoClick}>
+                Share a Video
+              </button>
               <button className="button" onClick={handleLogout}>Logout</button>
             </div>
             :
