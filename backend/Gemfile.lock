@@ -68,8 +68,6 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
-    ansi (1.5.0)
-    ast (2.4.2)
     bcrypt (3.1.19)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -107,7 +105,6 @@ GEM
     irb (1.8.0)
       rdoc (~> 6.5)
       reline (>= 0.3.6)
-    iso8601 (0.9.1)
     jwt (2.7.1)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -132,15 +129,11 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    net_http_timeout_errors (0.3.5)
     nio4r (2.5.9)
     nokogiri (1.15.4-x64-mingw-ucrt)
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
-    oga (3.4)
-      ast
-      ruby-ll (~> 2.1)
     orm_adapter (0.5.0)
     pg (1.5.3)
     pg (1.5.3-x64-mingw-ucrt)
@@ -209,9 +202,6 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
-    ruby-ll (2.1.3)
-      ansi
-      ast
     stringio (3.0.8)
     thor (1.2.2)
     timeout (0.4.0)
@@ -219,10 +209,6 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2023.3)
       tzinfo (>= 1.0.0)
-    video_info (2.8.0)
-      iso8601 (~> 0.9.1)
-      net_http_timeout_errors (~> 0.3.0)
-      oga (~> 3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webmock (3.19.1)
@@ -251,7 +237,6 @@ DEPENDENCIES
   rails (~> 7.0.7, >= 7.0.7.2)
   rspec-rails (~> 6.0, >= 6.0.3)
   tzinfo-data
-  video_info
   webmock
 
 RUBY VERSION
