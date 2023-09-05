@@ -14,15 +14,16 @@ RUN apt-get update -y && \
 WORKDIR /usr/src/app
 
 # Install app
-COPY ./backend/Gemfile ./backend/Gemfile.lock ./
+COPY ./Gemfile ./Gemfile.lock ./
 RUN gem install bundler:2.4
 RUN bundle install
 
 # Init script
-COPY ./backend/init.sh /
+COPY ./init.sh /
 RUN apt-get update -y && \
   apt-get install -y dos2unix
 RUN dos2unix /init.sh
+RUN chmod +x /init.sh
 ENTRYPOINT [ "/init.sh" ]
 
 EXPOSE 3000

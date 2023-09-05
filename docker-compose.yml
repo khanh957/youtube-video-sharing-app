@@ -1,11 +1,8 @@
 version: '3.4'
 services:
   backend:
-    image: sharing.videos
     container_name: backend
-    build:
-      dockerfile: ./backend/Dockerfile
-      context: . .
+    build: ./backend
     env_file:
       - ./backend/.env
     ports:
@@ -34,8 +31,10 @@ services:
     container_name: frontend
     build: ./frontend
     volumes:
-      - ./frontend:/usr/src/app
+      - ./frontend:/app
       - '/app/node_modules'
+    depends_on:
+      - backend
     ports:
       - 3000:3000
     stdin_open: true
