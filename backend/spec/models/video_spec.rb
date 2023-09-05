@@ -39,7 +39,6 @@ RSpec.describe Video do
   end
 
   describe '.build_from_url' do
-    let(:user) { FactoryBot.create(:user) }
     let(:valid_url) { 'https://www.youtube.com/watch?v=VIDEO_ID_12' }
     let(:invalid_url) { 'https://example.com' }
     let(:response) do
@@ -92,6 +91,19 @@ RSpec.describe Video do
       it 'raises a VideoDetails::UrlError' do
         expect { Video.build_from_url(user, valid_url) }.to raise_error(VideoDetails::UrlError, "Url is not valid, video is not found: #{valid_url}")
       end
+    end
+  end
+
+  describe "#send_notification" do
+    it "broadcasts a notification after creating a video" do
+      video = FactoryBot.build(:video, user: user)
+
+      data = {
+        title: video.title,
+        user: user.email
+      }
+
+      expect { video.save }.to have_broadcasted_to("VideosChannel").with(data)
     end
   end
 end

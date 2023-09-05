@@ -40,6 +40,15 @@ RSpec.describe VideosController do
         expect(new_video.title).not_to be_nil
         expect(new_video.description).not_to be_nil
       end
+
+      it "broadcasts a notification after creating a video" do
+        expect {
+          post :create, params: { video_url: valid_video_url }
+        }.to have_broadcasted_to("VideosChannel").with({
+          title: "Rick Astley - Never Gonna Give You Up (Official Music Video)",
+          user: user.email
+        })
+      end
     end
 
     context 'when invalid video URL is provided' do

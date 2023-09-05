@@ -1,4 +1,6 @@
 class Video < ApplicationRecord
+  after_create_commit { send_notification }
+
   belongs_to :user
 
   validates :url, presence: true
@@ -16,5 +18,15 @@ class Video < ApplicationRecord
       description: video_data[:description],
       user: user
     )
+  end
+
+  private
+
+  def send_notification
+    data = {
+      title: title,
+      user: user.email
+    }
+    ActionCable.server.broadcast("VideosChannel", data)
   end
 end
