@@ -1,0 +1,48 @@
+version: '3.4'
+services:
+  backend:
+    image: sharing.videos
+    container_name: backend
+    build:
+      dockerfile: ./backend/Dockerfile
+      context: . .
+    env_file:
+      - ./backend/.env
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./backend:/usr/src/app:cached
+    depends_on:
+      - db
+    networks:
+      - sharing.net
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres:15.4-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    networks:
+      - sharing.net
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    volumes:
+      - ./frontend:/usr/src/app
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    stdin_open: true
+
+networks:
+  sharing.net:
+    driver: bridge
+
+volumes:
+  pgdata:
